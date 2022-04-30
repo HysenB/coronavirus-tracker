@@ -21,6 +21,7 @@ public class HomeController {
         int totalReportedCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
         model.addAttribute("locationStats", allStats);
         model.addAttribute("totalReportedCases", totalReportedCases);
+        model.addAttribute("currentDate", java.time.LocalDate.now());
         return "home";
     }
 

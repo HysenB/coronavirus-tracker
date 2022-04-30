@@ -7,9 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.io.StringReader;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -32,7 +30,7 @@ public class CoronaVirusDataService {
 //    scheduled per tu bere run qdo dite
     @PostConstruct
     @Scheduled(cron = "* * * 1 * *")
-    public void fetchVirusData() throws IOException, InterruptedException {
+    public void fetchCoronaCasesData() throws IOException, InterruptedException {
         List<LocationStats> newStats = new ArrayList<>();
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -48,7 +46,7 @@ public class CoronaVirusDataService {
             int latestCases = Integer.parseInt(record.get(record.size() - 1));
             int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
             locationStat.setLatestTotalCases(latestCases);
-            locationStat.setDiffernceFromPreviousDay(latestCases - prevDayCases);
+            locationStat.setTodayCases(latestCases - prevDayCases);
             newStats.add(locationStat);
         }
         this.allStats = newStats;
