@@ -27,7 +27,7 @@ public class CoronaVirusDataService {
         return allStats;
     }
 
-//    scheduled per tu bere run qdo dite
+    //    scheduled per tu bere run qdo dite
     @PostConstruct
     @Scheduled(cron = "* * * 1 * *")
     public void fetchCoronaCasesData() throws IOException, InterruptedException {
@@ -45,7 +45,7 @@ public class CoronaVirusDataService {
             locationStat.setCountry(record.get("Country/Region"));
             int latestCases = Integer.parseInt(record.get(record.size() - 1));
             int prevDayCases = Integer.parseInt(record.get(record.size() - 2));
-            locationStat.setLatestTotalCases(latestCases);
+            locationStat.setTotalCases(latestCases);
             locationStat.setTodayCases(latestCases - prevDayCases);
             newStats.add(locationStat);
         }

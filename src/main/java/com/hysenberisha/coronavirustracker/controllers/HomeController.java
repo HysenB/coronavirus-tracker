@@ -18,11 +18,10 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model){
         List<LocationStats> allStats = coronaVirusDataService.getAllStats();
-        int totalReportedCases = allStats.stream().mapToInt(stat -> stat.getLatestTotalCases()).sum();
+        int totalReportedCases = allStats.stream().mapToInt(stat -> stat.getTotalCases()).sum();
         model.addAttribute("locationStats", allStats);
         model.addAttribute("totalReportedCases", totalReportedCases);
-        model.addAttribute("currentDate", java.time.LocalDate.now());
-        return "home";
+        return "index";
     }
 
 }

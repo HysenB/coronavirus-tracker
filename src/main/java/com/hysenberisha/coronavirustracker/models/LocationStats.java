@@ -7,7 +7,6 @@ public class LocationStats {
     public int totalCases;
     public int todayCases;
 
-
     public String getState() {
         return state;
     }
@@ -24,12 +23,20 @@ public class LocationStats {
         this.country = country;
     }
 
-    public int getLatestTotalCases() {
+    public int getTotalCases() {
         return totalCases;
     }
 
-    public void setLatestTotalCases(int latestTotalCases) {
-        this.totalCases = latestTotalCases;
+    public void setTotalCases(int totalCases) {
+        this.totalCases = totalCases;
+    }
+
+    public int getTodayCases() {
+        return todayCases;
+    }
+
+    public void setTodayCases(int todayCases) {
+        this.todayCases = todayCases;
     }
 
     @Override
@@ -42,11 +49,4 @@ public class LocationStats {
     }
 
 
-    public int getTodayCases() {
-        return todayCases;
-    }
-
-    public void setTodayCases(int todayCases) {
-        this.todayCases = todayCases;
-    }
 }
