@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body>
+<div class="container">
+
+    <div class="jumbotron">
+        <h1 class="text-center">Coronavirus Tracker Application</h1>
+        <p class="text-center">This application lists the current number of cases reported across the globe</p>
+        <hr class="my-4">
+        <h1 class="display-4 text-center" th:text="${totalReportedCases}"></h1>
+        <p class="lead text-center">Total cases reported</p>
+        <hr class="my-4">
+        <p>
+            <span>New cases reported since previous day:</span>
+            <span th:text="${totalNewCases}"></span>
+        </p>
+
+
+
+    <table class="table table-striped table-bordered">
+        <tr class="thead-dark">
+            <th>COUNTRY/STATE</th>
+            <th>TOTAL CASES REPORTED</th>
+            <th>CHANGES SINCE LAST DAY</th>
+        </tr>
+        <tr th:each="locationStat : ${locationStats}">
+            <td>
+                <span th:text="${locationStat.country}" class="text-uppercase font-weight-bold"></span>
+                <span th:if="${locationStat.state != null}" th:text="${locationStat.state}"></span>
+<!--                <span th:if="${locationStat.state != null}" th:text="${locationStat.state}"></span>-->
+<!--                <span th:unless="${locationStat.state == null}" th:text="${locationStat.country}"></span>-->
+            </td>
+
+<!--            <td th:text="${locationStat.country}"></td>-->
+            <td th:text="${locationStat.latestTotalCases}">0</td>
+            <td th:text="${locationStat.differnceFromPreviousDay}">0</td>
+        </tr>
+    </table>
+    </div>
+</div>
+
+
+</body>
+
+
+</html>
